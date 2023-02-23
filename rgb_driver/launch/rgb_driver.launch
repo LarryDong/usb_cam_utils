@@ -2,7 +2,7 @@
     <node pkg="rgb_driver" type="rgb_driver" name="rgb_driver" output="screen">
         <!-- Open /dev/video%{video_port} to avoid built-in camera. -->
         <param name="video_port" type="int" value= "0"/>
-        <param name="show_image" type="bool" value= "true"/>
+        <param name="show_image" type="bool" value= "false"/>
         <param name="fps" type="int" value= "4"/>
     </node>
 </launch>

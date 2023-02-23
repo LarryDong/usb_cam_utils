@@ -33,6 +33,8 @@ int main(int argc, char **argv){
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 1280);
     cap.set(cv::CAP_PROP_FPS, fps);
+    cap.set(cv::CAP_PROP_AUTO_EXPOSURE, 1);
+    cap.set(cv::CAP_PROP_GAIN, 10);
 
     while(!cap.isOpened()){
         ROS_WARN("Cannot open camera...");
