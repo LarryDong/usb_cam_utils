@@ -18,18 +18,22 @@ int main(int argc, char **argv){
     ros::init(argc, argv, "rgb_driver");
 	ros::NodeHandle nh;
     int video_port = 0;
+    bool show_image = false;
+    int fps = 10;
     ros::param::get("~video_port", video_port);     // get videoX, X is defined in roslaunch file.
+    ros::param::get("~show_image", show_image);     // show image.
+    ros::param::get("~fps", fps);     // show image.
+
     ROS_INFO_STREAM("Open camera from: /dev/video" << video_port);
 
-    bool show_image = false;
-    ros::param::get("~show_image", show_image);     // show image.
-    
     image_transport::ImageTransport it(nh);
-    image_transport::Publisher pubImage = it.advertise("/image", 10);
+    image_transport::Publisher pubImage = it.advertise("/image", 1);
 
     VideoCapture cap(video_port);
     cap.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, 1280);
+    cap.set(cv::CAP_PROP_FPS, fps);
+
     while(!cap.isOpened()){
         ROS_WARN("Cannot open camera...");
         sleep(1);
@@ -37,8 +41,9 @@ int main(int argc, char **argv){
     ROS_INFO("Begin to publish rgb image...");
 
     ROS_INFO_STREAM("Image size: " << cap.get(cv::CAP_PROP_FRAME_WIDTH) << ", " << cap.get(cv::CAP_PROP_FRAME_HEIGHT));
+    
 
-    ros::Rate r(100);
+    ros::Rate r(fps);          // fps cannot be set to some USB camera.
     while (ros::ok()) {
         Mat src;
         cap >> src;
