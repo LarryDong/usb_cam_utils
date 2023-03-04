@@ -14,7 +14,6 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 find_package(OpenCV REQUIRED)
-find_package(gflags REQUIRED) 
 
 catkin_package()
 
@@ -29,4 +28,4 @@ link_directories(
 )
 
 add_executable(rgb_driver src/main.cpp)
-target_link_libraries(rgb_driver ${catkin_LIBRARIES} ${OpenCV_LIBS} gflags)
+target_link_libraries(rgb_driver ${catkin_LIBRARIES} ${OpenCV_LIBS} pthread)
