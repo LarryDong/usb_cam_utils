@@ -1,0 +1,9 @@
+<launch>
+    <node pkg="image_writer" type="offline_writer" name="offline_writer" output="screen">
+        <param name="input_bag" type="string" value= "/home/larrydong/imu_ws/test.bag"/>
+        <param name="image_topic" type="string" value= "/image"/>
+        <param name="output_folder" type="string" value= "/home/larrydong/imu_ws/output"/>
+    </node>
+</launch>
+
+

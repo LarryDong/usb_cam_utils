@@ -70,13 +70,17 @@ int main(int argc, char **argv){
     string ts_filename = output_folder + "/ts.csv";
     string image_folder = output_folder + "/image";
     ROS_INFO_STREAM("Saving images and ts to: " << image_folder);
+    ofstream of(ts_filename);
     for (int i = 0; i < images.size(); ++i){
         Mat img = images[i];
         long ts = timestamps[i];
-        string image_filename = image_folder + "/" + to_string(ts) + ".bmp";
+        string image_filename = image_folder + "/" + to_string(ts) + ".png";
         imwrite(image_filename, img);
+        of << ts << endl;
     }
-    ROS_INFO_STREAM("Saved " << images.size() << " images.");
-
+    of.close();
+    ROS_INFO_STREAM("Saved images number: " << images.size());
+    ROS_INFO_STREAM("Saved ts to: " << ts_filename);
     return 0;
 }
+

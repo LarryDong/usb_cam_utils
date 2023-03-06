@@ -9,7 +9,7 @@
         <param name="show_image" type="bool" value= "true"/>    <!-- show image or not. Press 'q' to quit viewing. -->
 
         <!-- ros properties -->
-        <param name="output_rate" type="int" value= "2"/>      <!-- image output topic rate. If the `actual fps` < `output_rate`, the published images may be duplicated -->
+        <param name="output_rate" type="int" value= "20"/>      <!-- image output topic rate. If the `actual fps` < `output_rate`, the published images may be duplicated -->
         <remap from="/image" to="/image"/>
 
     </node>
