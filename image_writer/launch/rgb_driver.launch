@@ -1,0 +1,18 @@
+<launch>
+    <node pkg="rgb_driver" type="rgb_driver" name="rgb_driver" output="screen">
+        <!-- Camera properties -->
+        <param name="video_port" type="int" value= "0"/>        <!-- Open /dev/video%{video_port} to avoid built-in camera. -->
+        <param name="fps" type="int" value= "10"/>              <!-- fps cannot be set for some camera -->
+        <param name="exposure" type="double" value= "0.01"/>    <!-- exposure unit: s. Set 0 for auto exposure. Plug-in/off the camera if switch to auto.-->
+
+        <!-- view properties -->
+        <param name="show_image" type="bool" value= "true"/>    <!-- show image or not. Press 'q' to quit viewing. -->
+
+        <!-- ros properties -->
+        <param name="output_rate" type="int" value= "2"/>      <!-- image output topic rate. If the `actual fps` < `output_rate`, the published images may be duplicated -->
+        <remap from="/image" to="/image"/>
+
+    </node>
+</launch>
+
+
