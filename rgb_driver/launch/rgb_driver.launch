@@ -3,13 +3,15 @@
         <!-- Camera properties -->
         <param name="video_port" type="int" value= "0"/>        <!-- Open /dev/video%{video_port} to avoid built-in camera. -->
         <param name="fps" type="int" value= "10"/>              <!-- fps cannot be set for some camera -->
-        <param name="exposure" type="double" value= "0.01"/>    <!-- exposure unit: s. Set 0 for auto exposure. Plug-in/off the camera if switch to auto.-->
+        <param name="exposure" type="double" value= "0.005"/>    <!-- exposure unit: s. Set 0 for auto exposure. Plug-in/off the camera if switch to auto.-->
+        <param name="height" type="int" value= "480"/>    <!-- Image height -->
+        <param name="width" type="int" value= "640"/>    <!-- Image width -->
 
         <!-- view properties -->
         <param name="show_image" type="bool" value= "true"/>    <!-- show image or not. Press 'q' to quit viewing. -->
 
         <!-- ros properties -->
-        <param name="output_rate" type="int" value= "20"/>      <!-- image output topic rate. If the `actual fps` < `output_rate`, the published images may be duplicated -->
+        <param name="output_rate" type="int" value= "4"/>      <!-- image output topic rate. If the `actual fps` < `output_rate`, the published images may be duplicated -->
         <remap from="/image" to="/image"/>
 
     </node>

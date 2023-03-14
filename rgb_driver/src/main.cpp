@@ -40,12 +40,15 @@ int main(int argc, char **argv){
     int video_port = 0;
     int fps = 10;
     double exposure = 0;
+    double width = 640, height = 480;               // resolution
     double gain = 0;                                // not implemented
     bool show_image = false;
 
     ros::param::get("~video_port", video_port);     // get videoX, X is defined in roslaunch file.
     ros::param::get("~fps", fps);                   // set FPS.
     ros::param::get("~exposure", exposure);         // set exposure time. unit: s.
+    ros::param::get("~width", width);         // set exposure time. unit: s.
+    ros::param::get("~height", height);         // set exposure time. unit: s.
     int output_rate = 100;
     ros::param::get("~output_rate", output_rate);         // set exposure time. unit: s.
     ros::param::get("~show_image", show_image);         // show image or not.
@@ -60,8 +63,8 @@ int main(int argc, char **argv){
         sleep(1);
     }
     ROS_INFO("Camera opened. Setting camera properties...");
-    cap.set(cv::CAP_PROP_FRAME_WIDTH, 1920);
-    cap.set(cv::CAP_PROP_FRAME_HEIGHT, 1280);
+    cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
+    cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
     cap.set(cv::CAP_PROP_FPS, fps);
     if(exposure == 0){
         ROS_INFO("Using auto-exposure");
