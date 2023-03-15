@@ -51,6 +51,7 @@ int main(int argc, char **argv){
     ros::param::get("~height", height);         // set exposure time. unit: s.
     int output_rate = 100;
     ros::param::get("~output_rate", output_rate);         // set exposure time. unit: s.
+    ros::param::get("~gain", gain);         // gain
     ros::param::get("~show_image", show_image);         // show image or not.
 
     image_transport::ImageTransport it(nh);
@@ -66,6 +67,7 @@ int main(int argc, char **argv){
     cap.set(cv::CAP_PROP_FRAME_WIDTH, width);
     cap.set(cv::CAP_PROP_FRAME_HEIGHT, height);
     cap.set(cv::CAP_PROP_FPS, fps);
+    cap.set(cv::CAP_PROP_GAIN, gain);
     if(exposure == 0){
         ROS_INFO("Using auto-exposure");
         cap.set(cv::CAP_PROP_AUTO_EXPOSURE, -1);

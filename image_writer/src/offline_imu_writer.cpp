@@ -40,6 +40,7 @@ int main(int argc, char **argv){
     if(!bag.isOpen()){
         ROS_ERROR_STREAM("Cannot open bag: " << input_bag);
     }
+    ROS_INFO_STREAM("Input rosbag: " << input_bag);
 
     vector<double> image_timestamps, imu_timestamps;
     vector<Mat> images;
